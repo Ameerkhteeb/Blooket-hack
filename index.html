@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>Question Detector</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="logo">QD<span> / </span>01</div>
+      <div class="status"><i></i> READY</div>
+    </header>
+    <section class="hero">
+      <p class="eyebrow">QUESTION RECOGNITION SYSTEM</p>
+      <h1>Question<br><span>Detector</span></h1>
+      <p class="muted">Scan a screenshot. Recognize text. Find matching saved answers.</p>
+    </section>
+    <section class="panel">
+      <h2>01 / Screenshot scanner</h2>
+      <label class="upload" for="imageInput">
+        <span class="upload-icon">＋</span>
+        <strong>Choose screenshot</strong>
+        <small>Take a photo or select an image</small>
+      </label>
+      <input id="imageInput" type="file" accept="image/*" capture="environment">
+      <img id="preview" alt="Screenshot preview" hidden>
+      <button id="scanBtn" class="primary" disabled>Scan screenshot</button>
+      <p id="scanStatus" class="muted" aria-live="polite">Waiting for screenshot...</p>
+    </section>
+    <section class="panel">
+      <h2>02 / Recognized text</h2>
+      <textarea id="ocrText" rows="5" placeholder="OCR text will appear here. You can also paste text manually."></textarea>
+      <button id="parseBtn" class="secondary">Use extracted text</button>
+      <label for="question">Question</label>
+      <textarea id="question" rows="2" placeholder="Enter or correct the question"></textarea>
+      <label for="choices">Answer choices (one per line)</label>
+      <textarea id="choices" rows="4" placeholder="Choice A&#10;Choice B&#10;Choice C&#10;Choice D"></textarea>
+      <button id="findBtn" class="primary">Find saved answer</button>
+    </section>
+    <section class="panel">
+      <h2>03 / Answer suggestions</h2>
+      <div id="results" class="results muted">Scan a screenshot and search your saved question bank.</div>
+    </section>
+    <section class="panel">
+      <h2>04 / Your question bank</h2>
+      <p class="muted">Save questions and their verified answers for later matching.</p>
+      <label for="newQuestion">Question</label>
+      <textarea id="newQuestion" rows="2" placeholder="Type a question"></textarea>
+      <label for="correctAnswer">Verified correct answer</label>
+      <input id="correctAnswer" type="text" placeholder="Type the answer">
+      <button id="saveBtn" class="secondary">Save to question bank</button>
+      <div class="bank-heading"><strong>Saved questions</strong><span id="bankCount">0</span></div>
+      <div id="bankList"></div>
+      <button id="clearBtn" class="danger">Clear question bank</button>
+    </section>
+    <footer>QUESTION DETECTOR · VERSION 1.0<br>Your saved question bank stays in this browser.</footer>
+  </main>
+</body>
+</html>
